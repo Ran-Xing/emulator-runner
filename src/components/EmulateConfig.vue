@@ -86,27 +86,27 @@ onBeforeRouteLeave((to, from, next) => {
             </div>
           </div>
         </div>
-        <div class="flex flex-wrap">
-          <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
-            <span class="label font-bold">{{ t('githubProxy') }}</span>
-            <div class="button-select">
-              <button v-for="item in Default.githubSelectedOption"
-                      :key="item.key"
-                      :value="item.key"
-                      :class="{ 'button-select-options': true, 'actived': githubSelected === item.key }"
-                      @click="githubSelectedUpdate(item.key,!githubCustomIsOpen,item.key==='custom')">
-                {{ item.text }}
-              </button>
-              <input class="Selected" type="url"
-                     v-model="githubCustom"
-                     v-show="githubCustomIsOpen"
-                     style="margin-left: 5px"
-                     @blur="githubSelectedUpdate('custom',false,false)"
-                     @keydown.enter="githubSelectedUpdate('custom',false,false)"
-                     :placeholder="githubCustom??'https://'">
-            </div>
-          </div>
-        </div>
+<!--        <div class="flex flex-wrap">-->
+<!--          <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">-->
+<!--            <span class="label font-bold">{{ t('githubProxy') }}</span>-->
+<!--            <div class="button-select">-->
+<!--              <button v-for="item in Default.githubSelectedOption"-->
+<!--                      :key="item.key"-->
+<!--                      :value="item.key"-->
+<!--                      :class="{ 'button-select-options': true, 'actived': githubSelected === item.key }"-->
+<!--                      @click="githubSelectedUpdate(item.key,!githubCustomIsOpen,item.key==='custom')">-->
+<!--                {{ item.text }}-->
+<!--              </button>-->
+<!--              <input class="Selected" type="url"-->
+<!--                     v-model="githubCustom"-->
+<!--                     v-show="githubCustomIsOpen"-->
+<!--                     style="margin-left: 5px"-->
+<!--                     @blur="githubSelectedUpdate('custom',false,false)"-->
+<!--                     @keydown.enter="githubSelectedUpdate('custom',false,false)"-->
+<!--                     :placeholder="githubCustom??'https://'">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
