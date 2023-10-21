@@ -58,7 +58,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: "cli/dist/*.dmg"
-          body_path: README.md
+          body_path: cli/README.md
           name: "Pre-release ${{ env.NEXT_VERSION }}"
           tag_name: "v${{ env.NEXT_VERSION }}"
           draft: false
