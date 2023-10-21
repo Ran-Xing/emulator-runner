@@ -1,0 +1,126 @@
+{
+  "languageSelected": "auto",
+  "proxySelected": "none",
+  "githubSelected": "none",
+  "githubCustom": "https://ghproxy.com",
+  "proxyCustom": "http://127.0.0.1:1080",
+  "system-images": {
+    "22": {
+      "default": {
+        "x86_64": {
+          "path": "system-images/android-22/default/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/x86_64-22_r06.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-22/default/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/arm64-v8a-22_r02.zip"
+        }
+      },
+      "google_apis": {
+        "x86_64": {
+          "path": "system-images/android-22/google_apis/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/x86_64-22_r26.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-22/google_apis/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-22_r26.zip"
+        }
+      },
+      "google_apis_playstore": {
+        "x86_64": {},
+        "arm64-v8a": {}
+      }
+    },
+    "25": {
+      "default": {
+        "x86_64": {
+          "path": "system-images/android-25/default/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/x86_64-25_r01.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-25/default/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/arm64-v8a-25_r02.zip"
+        }
+      },
+      "google_apis": {
+        "x86_64": {
+          "path": "system-images/android-25/google_apis/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/x86_64-25_r18.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-25/google_apis/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-25_r20.zip"
+        }
+      },
+      "google_apis_playstore": {
+        "x86_64": {},
+        "arm64-v8a": {}
+      }
+    },
+    "28": {
+      "default": {
+        "x86_64": {
+          "path": "system-images/android-28/default/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/x86_64-28_r04.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-28/default/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/arm64-v8a-28_r02.zip"
+        }
+      },
+      "google_apis": {
+        "x86_64": {
+          "path": "system-images/android-28/google_apis/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/x86_64-28_r11.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-28/google_apis/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-28_r02.zip"
+        }
+      },
+      "google_apis_playstore": {
+        "x86_64": {
+          "path": "system-images/android-28/google_apis_playstore/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-28_r08.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-28/google_apis_playstore/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-28_r02.zip"
+        }
+      }
+    },
+    "33": {
+      "default": {
+        "x86_64": {
+          "path": "system-images/android-33/default/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/x86_64-33_r02.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-33/default/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/default/arm64-v8a-33_r02.zip"
+        }
+      },
+      "google_apis": {
+        "x86_64": {
+          "path": "system-images/android-33/google_apis/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/x86_64-33_r15.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-33/google_apis/arm64-v8a",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-33_r15.zip"
+        }
+      },
+      "google_apis_playstore": {
+        "x86_64": {
+          "path": "system-images/android-33/google_apis_playstore/x86_64",
+          "custom": "https://dl.google.com/android/repository/sys-img/google_apis_playstore/x86_64-33_r07.zip"
+        },
+        "arm64-v8a": {
+          "path": "system-images/android-33/google_apis_playstore/arm64-v8a",
+          "macosx": "https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-33_r07-darwin.zip",
+          "linux": "https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-33_r07-linux.zip"
+        }
+      }
+    }
+  }
+}
