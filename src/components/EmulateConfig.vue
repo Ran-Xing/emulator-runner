@@ -1,8 +1,47 @@
 <script setup lang="ts">
 import {onBeforeRouteLeave} from 'vue-router';
-import {t} from '../cli/i18n'
-import {openConfig} from "../cli/config";
+import {i18nSetLocale, t} from '../cli/i18n'
+import {openConfig, saveConfig} from "../cli/config";
 import Default from "../cli/default";
+import {ref, getCurrentInstance, ComponentInternalInstance} from "vue";
+import {router} from "../cli/router";
+import {string} from "yaml/dist/schema/common/string";
+
+
+const memorySelected = ref("4")
+const memoryCustom = ref("4")
+const memoryCustomIsOpen = ref(false)
+const displayName = ref("")
+const diskSelected = ref("12")
+const diskCustomIsOpen = ref(false)
+
+function memorySelectedUpdate(key: string, open: boolean, custom: boolean) {
+  console.log(`proxySelectedUpdate key [${key}] value [${memoryCustom.value}]`)
+  memorySelected.value = key
+  // config.value.proxySelected = memorySelected.value
+  if (custom) {
+    memoryCustomIsOpen.value = open
+    return
+  }
+  if (key === "custom") {
+    // memoryCustom.value = memoryCustom.value.trim()
+    console.log(`proxySelectedUpdate custokey [${key}] value [${memoryCustom.value}]`)
+    // if (memoryCustom.value === "") {
+    //   proxyCustom.value = "http://127.0.0.1:1080"
+    // }
+    setTimeout(() => {
+      memoryCustomIsOpen.value = open
+    }, 500)
+  } else {
+    setTimeout(() => {
+      memoryCustomIsOpen.value = false
+    }, 500)
+  }
+  // config.value.proxyCustom = proxyCustom.value
+  // config.value = saveConfig(config.value)
+  // console.log('proxySelectedUpdate save', config.value)
+  // reGetConfig()
+}
 
 onBeforeRouteLeave((to, from, next) => {
   // 判断数据是否修改
@@ -12,53 +51,38 @@ onBeforeRouteLeave((to, from, next) => {
   }
   next();
 });
-console.log(123)
 </script>
 
 <template>
   <div class="page-container">
     <div class="page">
       <header class="header">
-        <h1 class="md:text-xl">{{ t("emulatorConfig") }}</h1>
+        <h1 class="md:text-xl">{{ t("emulator") + ' ' + t('config') }}</h1>
         <div class="flex flex-auto items-center justify-end">
           <div class="text-shadow-primary text-primary-600 cursor-pointer text-sm">
-            <div @click="openConfig">{{ t('emulator')+t("configFile") }}</div>
+            <div @click="openConfig">{{ t('emulator') + t("configFile") }}</div>
           </div>
         </div>
       </header>
       <div class="card settings-card">
         <div class="flex flex-wrap">
           <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
-            <span class="label font-bold">{{ t('language') }}</span>
-<!--            <div class="button-select">-->
-<!--              <button v-for="item in Default.languageOptions"-->
-<!--                      :key="item.key"-->
-<!--                      :value="item.key"-->
-<!--                      :class="{ 'button-select-options': true, 'actived': languageSelected === item.key }"-->
-<!--                      @click="languageSelectedUpdate(item.key)"-->
-<!--              > {{ item.text }}-->
-<!--              </button>-->
-<!--            </div>-->
-          </div>
-        </div>
-        <div class="flex flex-wrap">
-          <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
-            <span class="label font-bold">{{ t('proxy') }}</span>
+            <span class="label font-bold">{{ t('memory') }}</span>
             <div class="button-select">
-              <button v-for="item in Default.proxySelectedOption"
+              <button v-for="item in Default.memorySelectedOptions"
                       :key="item.key"
                       :value="item.key"
-                      :class="{ 'button-select-options': true, 'actived': proxySelected === item.key }"
-                      @click="proxySelectedUpdate(item.key,!proxyCustomIsOpen,item.key==='custom')">
+                      :class="{ 'button-select-options': true, 'actived': memorySelected === item.key }"
+                      @click="memorySelectedUpdate(item.key,!memoryCustomIsOpen,item.key==='4')">
                 {{ item.text }}
               </button>
               <input class="Selected" type="url"
-                     v-model="proxyCustom"
-                     v-show="proxyCustomIsOpen"
+                     v-model="memoryCustom"
+                     v-show="memoryCustomIsOpen"
                      style="margin-left: 5px"
-                     @blur="githubSelectedUpdate('custom',false,false)"
-                     @keydown.enter="proxySelectedUpdate('custom',false,false)"
-                     :placeholder="proxyCustom??'https://'">
+                     @blur="memorySelectedUpdate('custom',false,false)"
+                     @keydown.enter="memorySelectedUpdate('4',false,false)"
+                     :placeholder=memoryCustom??4>
             </div>
           </div>
         </div>

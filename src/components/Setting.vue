@@ -8,7 +8,6 @@ import {router} from "../cli/router";
 
 const toast = useToast();
 const config = ref(getConfig())
-const {proxy} = getCurrentInstance() as any;
 
 const languageSelected = ref(config.value.languageSelected ?? "auto")
 const proxyCustom = ref(config.value.proxyCustom ?? "")
@@ -21,8 +20,8 @@ console.log('proxyCustom', proxyCustom.value)
 
 function reGetConfig() {
   languageSelected.value = config.value.languageSelected ?? "auto"
-  proxyCustom.value = config.value.proxyCustom ?? ""
-  githubCustom.value = config.value.githubCustom ?? ""
+  proxyCustom.value = config.value.proxyCustom ?? "http://127.0.0.1:10809"
+  githubCustom.value = config.value.githubCustom ?? "https://ghproxy.com"
   proxyCustomIsOpen.value = false
   githubCustomIsOpen.value = false
   proxySelected.value = config.value.proxySelected ?? "none"
@@ -49,9 +48,10 @@ function proxySelectedUpdate(key: string, open: boolean, custom: boolean) {
     proxyCustomIsOpen.value = open
     return
   }
+  console.log(key)
   if (key === "custom") {
     proxyCustom.value = proxyCustom.value.trim()
-    console.log(`proxySelectedUpdate custokey [${key}] value [${proxyCustom.value}]`)
+    console.log(`proxySelectedUpdate custom key [${key}] value [${proxyCustom.value}]`)
     if (proxyCustom.value === "") {
       proxyCustom.value = "http://127.0.0.1:1080"
     }
@@ -79,8 +79,9 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
   }
   if (key === "custom") {
     githubCustom.value = githubCustom.value.trim()
+    console.log(`githubSelectedUpdate custom key [${key}] value [${proxyCustom.value}]`)
     if (githubCustom.value === "") {
-      githubCustom.value = "https://"
+      githubCustom.value = "https://ghproxy.com"
     }
     setTimeout(() => {
       githubCustomIsOpen.value = open
@@ -92,6 +93,7 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
   }
   config.value.githubCustom = githubCustom.value
   config.value = saveConfig(config.value)
+  console.log('githubSelectedUpdate save', config.value)
   reGetConfig()
 }
 

@@ -316,10 +316,10 @@ getEmulatorRunners()
                 <h5 style="width: 80%">{{ emulatorLists[key].name }}</h5>
               </div>
               <div class="button">
-                <div @click="getEmulatorLogs(key)">日志</div>
-                <div class="running" v-show="emulatorLists[key].pid!=0" @click="stopEmulator(key)">停止</div>
-                <div class="stopped" v-show="emulatorLists[key].pid==0" @click="startEmulator(key)">启动</div>
-                <div @click="configEmulator(key)">配置</div>
+                <div @click="getEmulatorLogs(key)">{{ t('log')}}</div>
+                <div class="running" v-show="emulatorLists[key].pid!=0" @click="stopEmulator(key)">{{ t('stop')}}</div>
+                <div class="stopped" v-show="emulatorLists[key].pid==0" @click="startEmulator(key)">{{ t('start')}}</div>
+                <div @click="configEmulator(key)">{{ t('config')}}</div>
               </div>
             </li>
           </ul>

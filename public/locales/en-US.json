@@ -41,5 +41,10 @@
   "emulatorStartFailed": "Emulator Start Failed",
   "emulatorNotRunning": "Emulator Not Running",
   "emulatorConfig": "Emulator Config",
-  "emulator": "Emulator"
+  "config": "Config",
+  "emulator": "Emulator",
+  "memory": "Memory",
+  "log": "Log",
+  "stop": "Stop",
+  "start": "Start"
 }

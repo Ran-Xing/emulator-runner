@@ -40,6 +40,12 @@
 	"emulatorAlreadyRunning": "模拟器已经在运行了",
 	"emulatorStartFailed": "模拟器启动失败",
 	"emulator_not_running": "模拟器没有运行",
-	"emulatorConfig": "模拟器配置",
-	"emulator": "模拟器"
+	"config": "配置",
+	"emulator": "模拟器",
+	"memory": "内存",
+	"disk": "磁盘",
+	"log": "日志",
+	"start": "启动",
+	"stop": "停止",
+	"emulatorConfig": "emulatorConfig"
 }
