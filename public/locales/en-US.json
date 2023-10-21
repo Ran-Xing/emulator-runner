@@ -44,6 +44,8 @@
   "emulator": "Emulator",
   "memory": "Memory",
   "log": "Log",
+  "start": "Start",
   "stop": "Stop",
-  "start": "Start"
+  "name": "Name",
+  "id": "ID"
 }

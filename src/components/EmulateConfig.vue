@@ -14,6 +14,19 @@ const diskSelected = ref("16")
 const diskCustom = ref("16")
 const diskCustomIsOpen = ref(false)
 const displayName = ref("测试")
+const displayId = ref("com.test")
+
+function getTextWidth(text: string) {
+  const span = document.createElement('span');
+  span.style.visibility = 'hidden';
+  span.style.position = 'absolute';
+  span.style.whiteSpace = 'nowrap';
+  span.innerText = text;
+  document.body.appendChild(span);
+  const width = span.offsetWidth;
+  document.body.removeChild(span);
+  return width;
+}
 
 function memorySelectedUpdate(key: string, open: boolean, custom: boolean) {
   console.log(`proxySelectedUpdate key [${key}] value [${memoryCustom.value}]`)
@@ -93,6 +106,24 @@ onBeforeRouteLeave((to, from, next) => {
         </div>
       </header>
       <div class="card settings-card">
+        <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
+          <span class="label font-bold">{{ t('id') }}</span>
+          <div class="button-select">
+            <div>{{ displayId }}</div> <!-- TODO 添加间隔 添加更新方法-->
+            <button :class="{ 'button-select-options': true, 'actived': true }" @click="console.log('更新ID')">
+              点击刷新
+            </button>
+          </div>
+        </div>
+        <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
+          <span class="label font-bold">{{ t('name') }}</span>
+          <div class="button-select">
+            <input :placeholder='displayName' v-model=displayName
+                   :style="{ width: displayName.length*10 +100 + 'px',textAlign:'center',border:'1px solid #e4eaef' }">
+            <!-- TODO 这个动态样式为什么不生效 -->
+            <!-- TODO 动态更新长度 -->
+          </div>
+        </div>
         <div class="flex flex-wrap">
           <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
             <span class="label font-bold">{{ t('memory') }}</span>
@@ -250,6 +281,10 @@ onBeforeRouteLeave((to, from, next) => {
 
 .button-select > input {
   background: #ffffff;
+}
+
+.button-select > input:hover {
+  border: #FF6900 1px solid;
 }
 
 .input {
