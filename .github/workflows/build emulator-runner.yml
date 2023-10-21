@@ -1,9 +1,9 @@
-name: Build
+name: Build For Emulator Runner
 
 on:
   push:
-    branches: [main]
     paths-ignore:
+      - 'cli/**'
       - "**.md"
       - "**.spec.js"
       - ".idea"
@@ -12,7 +12,8 @@ on:
       - "Dockerfile"
       - ".gitignore"
       - ".github/**"
-      - "!.github/workflows/build.yml"
+      - "!.github/workflows/build*.yml"
+  workflow_dispatch:
 
 jobs:
   build:
