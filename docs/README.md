@@ -11,7 +11,8 @@ Android Studio Virtual Device Emulator Runner
 
 ## TODO
 
-- [ ] nodejs 读取ini配置文件 
+- [ ] nodejs 读取ini配置文件
+- [ ] EmulateConfig 路由参数传递问题 传递ID和 emulatorLists 或者直接传个JSON 过去, 如果有变更就提示 保存, 没有变更就不提示
 - [ ] `console` 提示的几个问题
 
 ## REQ
