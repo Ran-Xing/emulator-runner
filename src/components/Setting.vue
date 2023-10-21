@@ -125,6 +125,7 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
             </div>
           </div>
         </div>
+        <!-- TODO APP 更新加速渠道应该只设置一个 可以考虑 CDN JS 更新 也可以考虑使用 加速代理 也可以考虑使用 软件代理 -->
         <div class="flex flex-wrap">
           <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
             <span class="label font-bold">{{ t('proxy') }}</span>
@@ -140,7 +141,7 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
                      v-model="proxyCustom"
                      v-show="proxyCustomIsOpen"
                      style="margin-left: 5px"
-                     @blur="githubSelectedUpdate('custom',false,false)"
+                     @blur="proxySelectedUpdate('custom',false,false)"
                      @keydown.enter="proxySelectedUpdate('custom',false,false)"
                      :placeholder="proxyCustom??'https://'">
             </div>
