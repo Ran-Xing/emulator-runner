@@ -85,6 +85,8 @@ function emulatorListApp() {
         return
       }
       // EXAMPLE /Applications/金铲铲之战.app/Contents/MacOS/avd/Android5_1610.avd
+      // EXAMPLE /Applications/Android/金铲铲之战.app/Contents/MacOS/avd/Android5_1610.avd
+      // EXAMPLE /Applications/Android/Game/金铲铲之战.app/Contents/MacOS/avd/Android5_1610.avd
       let avdID = line.split('/').pop().replace('.avd', '')
       let display_name = avdID
       line.split('/').filter((item: any) => {
@@ -131,15 +133,6 @@ function emulatorListApp() {
       return
     }
     console.log("childProcess 耗时: " + (new Date().getTime() - timeLast.getTime()) + "ms");
-  });
-
-  timeLast = new Date();
-  let fileLists: string[] = []
-  findAvdFiles('/Applications', 0, (filePath) => {
-    fileLists.push(filePath);
-  }).then(() => {
-    console.log("findAvdFiles 耗时: " + (new Date().getTime() - timeLast.getTime()) + "ms");
-    console.log('findAvdFiles:', fileLists)
   });
 
   readdir(`${process.env.HOME}/.android/avd`, (err, files) => {

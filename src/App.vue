@@ -13,7 +13,7 @@ function currentRoute() {
 let menuItems = [
   {text: t('dashboard'), path: "/"},
   {text: t('manage'), path: "/manage"},
-  {text: t('emulatorConfig'), path: "/config"},
+  {text: t('emulator') + t("config"), path: "/config"},
   {text: t('setting'), path: "/setting"},
   {text: t('about'), path: "/about"},
 ]

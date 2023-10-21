@@ -24,6 +24,7 @@
     "build": "vue-tsc --noEmit && vite build && electron-builder",
     "preview": "vite preview",
     "GenerateConfig": "tsc cli/GenerateConfig.ts && node cli/GenerateConfig.js && rm cli/GenerateConfig.js",
+    "test": "tsc test.ts && node test.js && rm test.js",
     "deployApp": "bash cli/deploy.sh"
   },
 

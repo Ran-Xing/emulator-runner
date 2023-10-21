@@ -7,13 +7,13 @@ import {ref, getCurrentInstance, ComponentInternalInstance} from "vue";
 import {router} from "../cli/router";
 import {string} from "yaml/dist/schema/common/string";
 
-
 const memorySelected = ref("4")
 const memoryCustom = ref("4")
 const memoryCustomIsOpen = ref(false)
-const displayName = ref("")
-const diskSelected = ref("12")
+const diskSelected = ref("16")
+const diskCustom = ref("16")
 const diskCustomIsOpen = ref(false)
+const displayName = ref("测试")
 
 function memorySelectedUpdate(key: string, open: boolean, custom: boolean) {
   console.log(`proxySelectedUpdate key [${key}] value [${memoryCustom.value}]`)
@@ -35,6 +35,34 @@ function memorySelectedUpdate(key: string, open: boolean, custom: boolean) {
   } else {
     setTimeout(() => {
       memoryCustomIsOpen.value = false
+    }, 500)
+  }
+  // config.value.proxyCustom = proxyCustom.value
+  // config.value = saveConfig(config.value)
+  // console.log('proxySelectedUpdate save', config.value)
+  // reGetConfig()
+}
+
+function diskSelectedUpdate(key: string, open: boolean, custom: boolean) {
+  console.log(`proxySelectedUpdate key [${key}] value [${diskCustom.value}]`)
+  diskSelected.value = key
+  // config.value.proxySelected = diskSelected.value
+  if (custom) {
+    diskCustomIsOpen.value = open
+    return
+  }
+  if (key === "custom") {
+    // diskCustom.value = diskCustom.value.trim()
+    console.log(`proxySelectedUpdate custokey [${key}] value [${diskCustom.value}]`)
+    // if (diskCustom.value === "") {
+    //   proxyCustom.value = "http://127.0.0.1:1080"
+    // }
+    setTimeout(() => {
+      diskCustomIsOpen.value = open
+    }, 500)
+  } else {
+    setTimeout(() => {
+      diskCustomIsOpen.value = false
     }, 500)
   }
   // config.value.proxyCustom = proxyCustom.value
@@ -86,27 +114,25 @@ onBeforeRouteLeave((to, from, next) => {
             </div>
           </div>
         </div>
-<!--        <div class="flex flex-wrap">-->
-<!--          <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">-->
-<!--            <span class="label font-bold">{{ t('githubProxy') }}</span>-->
-<!--            <div class="button-select">-->
-<!--              <button v-for="item in Default.githubSelectedOption"-->
-<!--                      :key="item.key"-->
-<!--                      :value="item.key"-->
-<!--                      :class="{ 'button-select-options': true, 'actived': githubSelected === item.key }"-->
-<!--                      @click="githubSelectedUpdate(item.key,!githubCustomIsOpen,item.key==='custom')">-->
-<!--                {{ item.text }}-->
-<!--              </button>-->
-<!--              <input class="Selected" type="url"-->
-<!--                     v-model="githubCustom"-->
-<!--                     v-show="githubCustomIsOpen"-->
-<!--                     style="margin-left: 5px"-->
-<!--                     @blur="githubSelectedUpdate('custom',false,false)"-->
-<!--                     @keydown.enter="githubSelectedUpdate('custom',false,false)"-->
-<!--                     :placeholder="githubCustom??'https://'">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
+          <span class="label font-bold">{{ t('disk') }}</span>
+          <div class="button-select">
+            <button v-for="item in Default.diskSelectedOptions"
+                    :key="item.key"
+                    :value="item.key"
+                    :class="{ 'button-select-options': true, 'actived': diskSelected === item.key }"
+                    @click="diskSelectedUpdate(item.key,!diskCustomIsOpen,item.key==='4')">
+              {{ item.text }}
+            </button>
+            <input class="Selected" type="url"
+                   v-model="diskCustom"
+                   v-show="diskCustomIsOpen"
+                   style="margin-left: 5px"
+                   @blur="diskSelectedUpdate('custom',false,false)"
+                   @keydown.enter="diskSelectedUpdate('4',false,false)"
+                   :placeholder=diskCustom??4>
+          </div>
+        </div>
       </div>
     </div>
   </div>

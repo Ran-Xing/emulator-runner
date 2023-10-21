@@ -46,6 +46,5 @@
 	"disk": "磁盘",
 	"log": "日志",
 	"start": "启动",
-	"stop": "停止",
-	"emulatorConfig": "emulatorConfig"
+	"stop": "stop"
 }

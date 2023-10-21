@@ -40,7 +40,6 @@
   "emulatorAlreadyRunning": "Emulator Already Running",
   "emulatorStartFailed": "Emulator Start Failed",
   "emulatorNotRunning": "Emulator Not Running",
-  "emulatorConfig": "Emulator Config",
   "config": "Config",
   "emulator": "Emulator",
   "memory": "Memory",
