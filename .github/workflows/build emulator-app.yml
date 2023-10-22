@@ -1,9 +1,6 @@
 name: Build For Android Emulator
 
 on:
-  push:
-    paths-ignore:
-      - '!cli/**'
   workflow_dispatch:
 
 jobs:

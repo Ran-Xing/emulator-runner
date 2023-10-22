@@ -1,18 +1,6 @@
 name: Build For Emulator Runner
 
 on:
-  push:
-    paths-ignore:
-      - 'cli/**'
-      - "**.md"
-      - "**.spec.js"
-      - ".idea"
-      - ".vscode"
-      - ".dockerignore"
-      - "Dockerfile"
-      - ".gitignore"
-      - ".github/**"
-      - "!.github/workflows/build*.yml"
   workflow_dispatch:
 
 jobs:
