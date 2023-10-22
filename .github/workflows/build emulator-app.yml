@@ -6,7 +6,7 @@ on:
       RELEASE_NAME:
         description: 'RELEASE NAME'
         required: true
-        default: "v0.."
+        default: "v0."
 
 jobs:
   Build_For_Android_Emulator:
