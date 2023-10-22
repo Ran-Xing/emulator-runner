@@ -39,7 +39,7 @@ jobs:
           files: "cli/dist/*.dmg"
           body_path: cli/README.md
           name: "Pre-release ${{ github.event.inputs.RELEASE_NAME }}"
-          tag_name: "v${{ env.NEXT_VERSION }}"
+          tag_name: "v${{ github.event.inputs.RELEASE_NAME }}"
           draft: false
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
