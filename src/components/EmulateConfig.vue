@@ -6,6 +6,7 @@ import Default from "../cli/default";
 import {ref, getCurrentInstance, ComponentInternalInstance} from "vue";
 import {router} from "../cli/router";
 import {string} from "yaml/dist/schema/common/string";
+import path from "path";
 
 const memorySelected = ref("4")
 const memoryCustom = ref("4")
@@ -14,7 +15,8 @@ const diskSelected = ref("16")
 const diskCustom = ref("16")
 const diskCustomIsOpen = ref(false)
 const displayName = ref("测试")
-const displayId = ref("com.test")
+const oldAvdId = ref("Android_")
+const newAvdId = ref("Android_")
 
 function getTextWidth(text: string) {
   const span = document.createElement('span');
@@ -26,6 +28,31 @@ function getTextWidth(text: string) {
   const width = span.offsetWidth;
   document.body.removeChild(span);
   return width;
+}
+
+function displayIdUpdate() {
+  // TODO ID 不能重复
+  newAvdId.value = "Android_" + String(Math.floor(Math.random() * 1000) + 1000)
+  if (oldAvdId.value === newAvdId.value) {
+    return
+  }
+  if (emulatorLists.value[newAvdId.value]) {
+    displayId.value = "Android_" + String(Math.floor(Math.random() * 1000) + 1000)
+    return
+  }
+  emulatorLists.value[newAvdId.value] = emulatorLists.value[oldAvdId.value]
+  emulatorLists.value[newAvdId.value].avd = newAvdId.value
+  emulatorLists.value[newAvdId.value].name = displayName.value
+  emulatorLists.value[newAvdId.value].config = emulatorLists.value[newAvdId.value].config.replace(oldAvdId.value, newAvdId.value)
+
+  if (emulatorLists.value[oldAvdId]) {
+    delete emulatorLists.value[oldAvdId]
+  }
+  //   displayId.value = oldAvdId.value
+  // delete jsonObj.key2
+  //  emulatorLists.value[avdID]??=newavd
+  //  emulatorLists.value[avdID]??=newavd
+  // mv oldavd.avd newavd.avd
 }
 
 function memorySelectedUpdate(key: string, open: boolean, custom: boolean) {
@@ -109,9 +136,10 @@ onBeforeRouteLeave((to, from, next) => {
         <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
           <span class="label font-bold">{{ t('id') }}</span>
           <div class="button-select">
-            <div>{{ displayId }}</div> <!-- TODO 添加间隔 添加更新方法-->
-            <button :class="{ 'button-select-options': true, 'actived': true }" @click="console.log('更新ID')">
-              点击刷新
+            <div class="tips">{{ newAvdId }}</div> <!-- TODO 添加间隔 添加更新方法-->
+            <button :class="{ 'button-select-options': true, 'actived': true }"
+                    @click="newAvdId='Android_'+String(Math.floor(Math.random() * 1000) + 1000)">
+              {{ t('clickRefresh') }}
             </button>
           </div>
         </div>
@@ -119,7 +147,8 @@ onBeforeRouteLeave((to, from, next) => {
           <span class="label font-bold">{{ t('name') }}</span>
           <div class="button-select">
             <input :placeholder='displayName' v-model=displayName
-                   :style="{ width: displayName.length*10 +100 + 'px',textAlign:'center',border:'1px solid #e4eaef' }">
+                   :style="{ width: displayName.length*10 +100 + 'px',textAlign:'center',border:'1px solid #e4eaef' }"
+                   @input="displayName=displayName.trim()">
             <!-- TODO 这个动态样式为什么不生效 -->
             <!-- TODO 动态更新长度 -->
           </div>
@@ -135,13 +164,15 @@ onBeforeRouteLeave((to, from, next) => {
                       @click="memorySelectedUpdate(item.key,!memoryCustomIsOpen,item.key==='4')">
                 {{ item.text }}
               </button>
-              <input class="Selected" type="url"
+              <input class="Selected" type="text"
                      v-model="memoryCustom"
                      v-show="memoryCustomIsOpen"
-                     style="margin-left: 5px"
                      @blur="memorySelectedUpdate('custom',false,false)"
                      @keydown.enter="memorySelectedUpdate('4',false,false)"
-                     :placeholder=memoryCustom??4>
+                     placeholder="4G"
+                     @input="memoryCustom=memoryCustom.replace(/\D/g, '');"
+                     style="margin-left: 5px;width: 50px;text-align:right;border:1px solid #e4eaef">
+              <div class="tips" v-show="memoryCustomIsOpen">G</div>
             </div>
           </div>
         </div>
@@ -155,13 +186,15 @@ onBeforeRouteLeave((to, from, next) => {
                     @click="diskSelectedUpdate(item.key,!diskCustomIsOpen,item.key==='4')">
               {{ item.text }}
             </button>
-            <input class="Selected" type="url"
+            <input class="Selected" type="text"
                    v-model="diskCustom"
                    v-show="diskCustomIsOpen"
-                   style="margin-left: 5px"
                    @blur="diskSelectedUpdate('custom',false,false)"
                    @keydown.enter="diskSelectedUpdate('4',false,false)"
-                   :placeholder=diskCustom??4>
+                   placeholder="16G"
+                   @input="diskCustom=diskCustom.replace(/\D/g, '');"
+                   style="margin-left: 5px;width: 50px;text-align:right;border:1px solid #e4eaef">
+            <div class="tips" v-show="diskCustomIsOpen">G</div>
           </div>
         </div>
       </div>
@@ -248,7 +281,6 @@ onBeforeRouteLeave((to, from, next) => {
   line-height: 30px;
   background: #fff;
   border: 1px solid #e4eaef;
-  border-right: none;
   transition: all .3s ease;
   cursor: pointer;
   outline: 0;
@@ -281,6 +313,20 @@ onBeforeRouteLeave((to, from, next) => {
 
 .button-select > input {
   background: #ffffff;
+}
+
+.button-select .tips {
+  height: 30px;
+  padding: 0 5px;
+  color: #54759a;
+  line-height: 30px;
+  background: #fff;
+  transition: all .3s ease;
+  cursor: pointer;
+  outline: 0;
+  display: block;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-select > input:hover {
@@ -526,7 +572,7 @@ h1 {
   color: #fff;
   border: #e5e7eb 1px solid;
   border-radius: 3px;
-  padding: 0 15px;
+  padding: 0 7px;
   height: 30px;
   color: #54759a;
   line-height: 30px;

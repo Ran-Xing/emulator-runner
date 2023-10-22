@@ -48,5 +48,6 @@
   "start": "启动",
   "stop": "停止",
   "name": "名字",
-  "id": "ID"
+  "id": "ID",
+  "ClickRefresh": "点击刷新"
 }

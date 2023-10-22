@@ -47,5 +47,6 @@
   "start": "Start",
   "stop": "Stop",
   "name": "Name",
-  "id": "ID"
+  "id": "ID",
+  "clickRefresh": "ClickRefresh"
 }
