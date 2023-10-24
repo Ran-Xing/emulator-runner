@@ -4,6 +4,7 @@ import {t} from '../cli/i18n'
 import {getConfig} from "../cli/config";
 import {useToast} from "vue-toastification";
 import {ref, WatchStopHandle, watch} from 'vue'
+import {emulatorLists} from '../cli/default'
 import {accessSync, readdirSync, readFileSync, lstatSync, promises, readdir, stat, statSync, constants} from "fs";
 import {exec} from "child_process";
 import {router} from "../cli/router";
@@ -14,10 +15,8 @@ let stopWatch: WatchStopHandle
 const config = ref(getConfig())
 const logViewRaw = ref("")
 const logViewName = ref("")
-const emulatorLists = ref({} as { [key: string]: any });
 const emulatorPath = path.join(process.env.sdkPath ?? "异常路径", 'emulator/emulator')
 defineProps<{ msg: string }>()
-console.log(config.value)
 
 function logViewClose() {
   logViewName.value = '';
@@ -128,7 +127,7 @@ function emulatorListApp() {
       }
     })
     console.debug(emulatorLists.value)
-    if (Object.keys(emulatorLists.value).length === 0) {
+    if (Object.keys(emulatorLists).length === 0) {
       toast.info(t('noEmulator'))
       return
     }

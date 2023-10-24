@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import {ref, getCurrentInstance, ComponentInternalInstance} from "vue";
-import {openConfig, getConfig, saveConfig, reload} from "../cli/config";
-import Default from "../cli/default";
+import {ref} from "vue";
+import {openConfig, getConfig, saveConfig} from "../cli/config";
+import {proxySelectedOption,githubSelectedOption,languageOptions} from "../cli/default";
 import {useToast} from "vue-toastification";
 import {t, i18nSetLocale} from "../cli/i18n";
 import {router} from "../cli/router";
 
-const toast = useToast();
 const config = ref(getConfig())
 
 const languageSelected = ref(config.value.languageSelected ?? "auto")
@@ -115,7 +114,7 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
           <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
             <span class="label font-bold">{{ t('language') }}</span>
             <div class="button-select">
-              <button v-for="item in Default.languageOptions"
+              <button v-for="item in languageOptions"
                       :key="item.key"
                       :value="item.key"
                       :class="{ 'button-select-options': true, 'actived': languageSelected === item.key }"
@@ -130,7 +129,7 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
           <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
             <span class="label font-bold">{{ t('proxy') }}</span>
             <div class="button-select">
-              <button v-for="item in Default.proxySelectedOption"
+              <button v-for="item in proxySelectedOption"
                       :key="item.key"
                       :value="item.key"
                       :class="{ 'button-select-options': true, 'actived': proxySelected === item.key }"
@@ -151,7 +150,7 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
           <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
             <span class="label font-bold">{{ t('githubProxy') }}</span>
             <div class="button-select">
-              <button v-for="item in Default.githubSelectedOption"
+              <button v-for="item in githubSelectedOption"
                       :key="item.key"
                       :value="item.key"
                       :class="{ 'button-select-options': true, 'actived': githubSelected === item.key }"

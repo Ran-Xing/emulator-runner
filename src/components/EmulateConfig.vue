@@ -2,12 +2,19 @@
 import {onBeforeRouteLeave} from 'vue-router';
 import {i18nSetLocale, t} from '../cli/i18n'
 import {openConfig, saveConfig} from "../cli/config";
-import Default from "../cli/default";
+import {
+  emulatorLists,
+  memorySelectedOptions,
+  diskSelectedOptions
+} from "../cli/default";
 import {ref, getCurrentInstance, ComponentInternalInstance} from "vue";
 import {router} from "../cli/router";
 import {string} from "yaml/dist/schema/common/string";
 import path from "path";
 
+if (Object.keys(emulatorLists.value).length === 0) {
+  router.go(-1);
+}
 const memorySelected = ref("4")
 const memoryCustom = ref("4")
 const memoryCustomIsOpen = ref(false)
@@ -37,7 +44,7 @@ function displayIdUpdate() {
     return
   }
   if (emulatorLists.value[newAvdId.value]) {
-    displayId.value = "Android_" + String(Math.floor(Math.random() * 1000) + 1000)
+    newAvdId.value = "Android_" + String(Math.floor(Math.random() * 1000) + 1000)
     return
   }
   emulatorLists.value[newAvdId.value] = emulatorLists.value[oldAvdId.value]
@@ -45,8 +52,8 @@ function displayIdUpdate() {
   emulatorLists.value[newAvdId.value].name = displayName.value
   emulatorLists.value[newAvdId.value].config = emulatorLists.value[newAvdId.value].config.replace(oldAvdId.value, newAvdId.value)
 
-  if (emulatorLists.value[oldAvdId]) {
-    delete emulatorLists.value[oldAvdId]
+  if (emulatorLists.value[oldAvdId.value]) {
+    delete emulatorLists.value[oldAvdId.value]
   }
   //   displayId.value = oldAvdId.value
   // delete jsonObj.key2
@@ -113,6 +120,10 @@ function diskSelectedUpdate(key: string, open: boolean, custom: boolean) {
 
 onBeforeRouteLeave((to, from, next) => {
   // 判断数据是否修改
+  if (Object.keys(emulatorLists.value).length === 0) {
+    next();
+    return;
+  }
   const shouldSave = window.confirm('是否保存修改？');
   if (shouldSave) {
     // 执行保存操作
@@ -157,7 +168,7 @@ onBeforeRouteLeave((to, from, next) => {
           <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
             <span class="label font-bold">{{ t('memory') }}</span>
             <div class="button-select">
-              <button v-for="item in Default.memorySelectedOptions"
+              <button v-for="item in memorySelectedOptions"
                       :key="item.key"
                       :value="item.key"
                       :class="{ 'button-select-options': true, 'actived': memorySelected === item.key }"
@@ -179,7 +190,7 @@ onBeforeRouteLeave((to, from, next) => {
         <div class="flex w-full items-center justify-between py-3 px-8 md:w-1/2">
           <span class="label font-bold">{{ t('disk') }}</span>
           <div class="button-select">
-            <button v-for="item in Default.diskSelectedOptions"
+            <button v-for="item in diskSelectedOptions"
                     :key="item.key"
                     :value="item.key"
                     :class="{ 'button-select-options': true, 'actived': diskSelected === item.key }"
