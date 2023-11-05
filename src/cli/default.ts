@@ -1,4 +1,4 @@
-import {getCurrentInstance, ref} from "vue";
+import {ref} from "vue";
 
 import {t} from "./i18n";
 
@@ -13,6 +13,7 @@ export const githubSelectedOption = [
     {key: 'none', text: t("none"), value: ""},
     {key: 'ghproxy', text: "ghproxy", value: "https://ghproxy.com"},
     {key: 'custom', text: t("custom"), value: "https://ghproxy.com"},
+    // TODO t("custom") is not working
 ]
 export const languageOptions = [
     {key: 'zh-CN', text: '中文'},

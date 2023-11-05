@@ -9,6 +9,7 @@ rm -rf dist
 ./start.sh "Android 5" "三国志·战略版" "src/img/sgz.png"
 ./start.sh "Android 5" "金铲铲之战" "src/img/jcc.png"
 ./start.sh "Android 12" "穿越火线 枪战王者" "src/img/cfm.png"
+./start.sh "Android 5" "咸鱼" "src/img/xy.png"
 
 cd dist
 create-dmg \
@@ -84,9 +85,23 @@ create-dmg \
   "穿越火线 枪战王者.dmg" \
   "穿越火线 枪战王者.app"
 
+create-dmg \
+  --volname "咸鱼" \
+  --volicon "咸鱼.icns" \
+  --background "../src/img/banner.png" \
+  --window-pos 200 120 \
+  --window-size 800 400 \
+  --icon-size 100 \
+  --icon "咸鱼" 200 190 \
+  --hide-extension "咸鱼.app" \
+  --app-drop-link 600 185 \
+  "咸鱼.dmg" \
+  "咸鱼.app"
+
 if [ "${GITHUB_WORKSPACE}" != "" ] && [ "${GITHUB_WORKSPACE}" != "" ]; then
   echo "GitHub Action Build"
   mv "穿越火线 枪战王者.dmg" cfm.dmg
   mv "金铲铲之战.dmg" jcc.dmg
   mv "三国志·战略版.dmg" sgz.dmg
+  mv "咸鱼" xianyu.dmg
 fi

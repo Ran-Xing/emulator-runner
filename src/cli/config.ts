@@ -3,6 +3,7 @@ import {useToast} from "vue-toastification";
 import {t} from './i18n'
 import fs from "fs";
 import path from "path";
+import {string} from "yaml/dist/schema/common/string";
 
 const toast = useToast()
 
@@ -38,4 +39,13 @@ export function saveConfig(value: Object): Object {
 
 export function reload(): any {
     ipcRenderer.sendSync('saveConfig', null);
+}
+
+export function getICons(filepath: string, avdID: string): any {
+    let item = ipcRenderer.sendSync('getICons', [filepath, avdID]);
+    if (item.error) {
+        console.log(item.error)
+        toast.error(item.msg)
+    }
+    return item.result
 }

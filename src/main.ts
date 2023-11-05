@@ -26,7 +26,7 @@ const toastOptions: PluginOptions = {
 }
 
 app.use(Toast, toastOptions)
-app.use(router)
+app.use(router,)
 app.mount('.app')
     .$nextTick(() => {
         postMessage({payload: 'removeLoading'}, '*')

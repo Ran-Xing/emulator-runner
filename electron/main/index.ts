@@ -15,7 +15,7 @@ import {join, dirname} from 'node:path'
 import i18n from "i18n";
 import os from "os";
 import {spawn} from "child_process";
-import {writeFileSync, readFileSync, existsSync} from "fs";
+import {writeFileSync, readFileSync, existsSync, copyFileSync} from "fs";
 import {xml2json} from "xml-js";
 
 // The built directory structure
@@ -63,11 +63,10 @@ if (!app.requestSingleInstanceLock()) {
     process.exit(0)
 }
 
-let staticPath = join(app.getAppPath(), '/src/static')
-let tmp_path = app.getAppPath()
-if (tmp_path.includes('/Contents/Resources/')) {
-    process.env.configFilePath = join(app.getAppPath(), '../../config.json')
-    staticPath = join(app.getAppPath(), '../../Resources/')
+let staticPath = join(process.env.DIST, '/assets')
+if (process.env.DIST.includes('/Contents/Resources/')) {
+    process.env.configFilePath = join(process.env.DIST, '../../config.json')
+    staticPath = join(process.env.DIST, '../../Resources/')
 }
 switch (process.platform) {
     case 'darwin':
@@ -134,6 +133,7 @@ async function createWindow() {
         // frame: true,
         titleBarStyle: 'hiddenInset',
         icon: join(process.env.VITE_PUBLIC, 'icon.png'),
+        alwaysOnTop: true,
         webPreferences: {
             preload,
             // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
@@ -141,7 +141,7 @@ async function createWindow() {
             // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
             nodeIntegration: true,
             contextIsolation: false,
-            webSecurity: false,
+            webSecurity: true,
             // 如果是开发模式可以使用devTools 调试
             // devTools: process.env.NODE_ENV === "development",
             devTools: true,
@@ -259,7 +259,6 @@ ipcMain.on('i18n-setLocale', (event, arg) => {
     i18n.setLocale(arg)
     event.returnValue = true
 })
-
 ipcMain.on('getAppPath', (event) => {
     // event.reply('getAppPath-reply', i18nConfig.directory)
     event.returnValue = app.getAppPath()
@@ -312,6 +311,28 @@ ipcMain.on('openConfig', (event, args) => {
     item.msg = i18n.__('openConfigSuccess')
     item.result = args
     event.returnValue = item
+    return
+})
+
+ipcMain.on('getICons', (event, args) => {
+    event.returnValue = "/icon.png"
+    if (args.length != 2) {
+        console.log("getICons error", args)
+        return;
+    }
+    if (!existsSync(args[0])) {
+        try {
+            copyFileSync(args[0], join(staticPath, args[1] + '.png'))
+            event.returnValue = join(staticPath, args[1] + '.png')
+            console.log(join(staticPath, args[1] + '.png'))
+        } catch (err) {
+            console.log(err)
+            return;
+        }
+    } else {
+        event.returnValue = join(staticPath, args[1] + '.png')
+        console.log(join(staticPath, args[1] + '.png'))
+    }
     return
 })
 

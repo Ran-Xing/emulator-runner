@@ -49,6 +49,5 @@
 	"stop": "停止",
 	"name": "名字",
 	"id": "ID",
-	"ClickRefresh": "点击刷新",
-	"clickRefresh": "clickRefresh"
+	"clickRefresh": "点击刷新"
 }

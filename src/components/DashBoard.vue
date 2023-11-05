@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import path from "path";
 import {t} from '../cli/i18n'
-import {getConfig} from "../cli/config";
+import {getConfig, getICons} from "../cli/config";
 import {useToast} from "vue-toastification";
 import {ref, WatchStopHandle, watch} from 'vue'
 import {emulatorLists} from '../cli/default'
@@ -12,7 +12,6 @@ import {router} from "../cli/router";
 const toast = useToast()
 
 let stopWatch: WatchStopHandle
-const config = ref(getConfig())
 const logViewRaw = ref("")
 const logViewName = ref("")
 const emulatorPath = path.join(process.env.sdkPath ?? "异常路径", 'emulator/emulator')
@@ -24,55 +23,8 @@ function logViewClose() {
   stopWatch()
 }
 
-
-async function findAvdFiles(dir: string, depth: number, callback: (filePath: string) => void,): Promise<void> {
-  if (depth > 8) {
-    return;
-  }
-
-  const files = await promises.readdir(dir);
-
-  for (const file of files) {
-    if (file.endsWith('.avd')) {
-      callback(path.join(dir, file));
-    }
-  }
-
-  for (const file of files) {
-    if (file === '.DS_Store') {
-      continue;
-    }
-
-    const filePath = path.join(dir, file);
-
-    if (depth > 3 && !filePath.includes('.app')) {
-      continue;
-    }
-
-    if (file === 'Contents') {
-      depth = 5;
-    }
-
-    const fileStat = await promises.stat(filePath);
-
-    if (fileStat.isDirectory()) {
-      try {
-        const linkStat = await promises.lstat(filePath);
-        if (linkStat.isSymbolicLink()) {
-          continue;
-        }
-      } catch (error) {
-        continue; // 如果 lstat 报错，说明文件不存在或者无权限访问，直接跳过
-      }
-
-      await findAvdFiles(filePath, depth + 1, callback);
-    }
-  }
-}
-
 function emulatorListApp() {
   let logs = ""
-  let timeLast = new Date();
   const childProcess = exec(`find /Applications -name "*.avd" -type d -mindepth 5 -maxdepth 8`)
   childProcess.stdout?.on('data', (data: any) => {
     logs = logs.concat(data.toString());
@@ -101,9 +53,11 @@ function emulatorListApp() {
       let execAPP = path.join(line, '../../../MacOS/runemu')
       try {
         accessSync(avdIcon, constants.F_OK);
-        avdIcon = "file://" + avdIcon
+        console.log(avdIcon)
+        avdIcon = getICons(avdIcon, avdID)
+        console.log(avdIcon)
       } catch (err) {
-        avdIcon = "/src/static/icon.png";
+        avdIcon = "/icon.png";
       }
 
       if (emulatorLists.value[avdID] === undefined) {
@@ -131,7 +85,6 @@ function emulatorListApp() {
       toast.info(t('noEmulator'))
       return
     }
-    console.log("childProcess 耗时: " + (new Date().getTime() - timeLast.getTime()) + "ms");
   });
 
   readdir(`${process.env.HOME}/.android/avd`, (err, files) => {

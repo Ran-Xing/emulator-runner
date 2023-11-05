@@ -7,7 +7,6 @@ import {t, i18nSetLocale} from "../cli/i18n";
 import {router} from "../cli/router";
 
 const config = ref(getConfig())
-
 const languageSelected = ref(config.value.languageSelected ?? "auto")
 const proxyCustom = ref(config.value.proxyCustom ?? "")
 const githubCustom = ref(config.value.githubCustom ?? "")
