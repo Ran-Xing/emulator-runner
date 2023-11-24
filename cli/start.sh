@@ -67,12 +67,12 @@ if [ ! -d "${ANDROID_SDK_ROOT}/emulator" ]; then
     if [ "$(arch)" != "arm64" ]; then
       emulator_url=https://dl.google.com/android/repository/emulator-darwin_x64-10696886.zip
     fi
-    if [ ! -e "tmp/emulator.zip" ]; then curl -s "${emulator_url}" -o tmp/emulator.zip; fi
+    if [ ! -e "tmp/emulator.zip" ]; then curl -kfsSL "${emulator_url}" -o tmp/emulator.zip; fi
     unzip -q "tmp/emulator.zip" -d "${ANDROID_SDK_ROOT}"
 
 fi
 if [ ! -d "${ANDROID_SDK_ROOT}/platform-tools" ]; then
-    if [ ! -e "tmp/platform-tools.zip" ]; then curl -s https://dl.google.com/android/repository/platform-tools_r34.0.4-darwin.zip -o tmp/platform-tools.zip; fi
+    if [ ! -e "tmp/platform-tools.zip" ]; then curl -kfsSL https://dl.google.com/android/repository/platform-tools_r34.0.4-darwin.zip -o tmp/platform-tools.zip; fi
     unzip -q "tmp/platform-tools.zip" -d "${ANDROID_SDK_ROOT}"
 fi
 #if [ ! -d "${ANDROID_SDK_ROOT}/skins" ]; then
@@ -210,7 +210,7 @@ esac
 
 if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path}" ]; then
     if [ ! -e "tmp/${system_images}.zip" ]; then
-        curl -s "${system_images_url}" -o "tmp/${system_images}.zip"
+        curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip"
     fi
     mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path}"
     unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path}"
