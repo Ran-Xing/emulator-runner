@@ -25,6 +25,19 @@ Android Studio Virtual Device Emulator Runner
 6. [Android Emulator Config](https://developer.android.com/studio/run/emulator-commandline#startup-options)
 7. [XML Config](https://dl.google.com/android/repository/addons_list-5.xml)
 
+- Android 5.1 (Lollipop): API level 22
+- Android 6.0 (Marshmallow): API level 23
+- Android 7.0 (Nougat): API level 24
+- Android 7.1 (Nougat): API level 25
+- Android 8.1 (Oreo): API level 27
+- Android 9 (Pie): API level 28
+- Android 10: API level 29
+- Android 11: API level 30
+- Android 12: API level 32
+- Android 13: API level 33
+- Android 14: API level 34
+
+
 
 ### Inter
 

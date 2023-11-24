@@ -88,10 +88,12 @@ fi
 
 if [ -z "$1" ]; then
     echo "    请选择创建的系统版本"
-    options=("Android 5" "Android 5 Google" "Android 7" "Android 7 Google" "Android 12" "Android 12 Google" "Quit")
+    options=("Android 5" "Android 5 Google" "Android 6" "Android 6 Google" "Android 7" "Android 7 Google" "Android 8" "Android 8 Google" "Android 9" "Android 9 Google" "Android 10" "Android 10 Google" "Android 11" "Android 11 Google" "Android 12" "Android 12 Google" "Android 13" "Android 13 Google" "Android 14" "Android 14 Google" "Quit")
     select opt in "${options[@]}"; do
-        msg_last 5
+        break
     done
+    msg_last 9
+    msg_info "您选择了: ${opt}"
 else
     opt=$1
 fi
@@ -100,32 +102,102 @@ case $opt in
 "Android 5")
     system_images=Android5
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-22_r02.zip"
-    system_images_path="system-images/android-22/default"
+    system_images_path="system-images/android-22/default/arm64-v8a"
     ;;
 "Android 5 Google")
     system_images=Android5_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-22_r26.zip"
-    system_images_path="system-images/android-22/google_apis"
+    system_images_path="system-images/android-22/google_apis/arm64-v8a"
+    ;;
+"Android 6")
+    system_images=Android6
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-23_r07.zip"
+    system_images_path="system-images/android-23/default/arm64-v8a"
+    ;;
+"Android 6 Google")
+    system_images=Android6_google
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-23_r33.zip"
+    system_images_path="system-images/android-23/google_apis/arm64-v8a"
     ;;
 "Android 7")
     system_images=Android7
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-25_r02.zip"
-    system_images_path="system-images/android-25/default"
+    system_images_path="system-images/android-25/default/arm64-v8a"
     ;;
 "Android 7 Google")
     system_images=Android7_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-25_r20.zip"
-    system_images_path="system-images/android-25/google_apis"
+    system_images_path="system-images/android-25/google_apis/arm64-v8a"
+    ;;
+"Android 8")
+    system_images=Android8
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-27_r02.zip"
+    system_images_path="system-images/android-27/default/arm64-v8a"
+    ;;
+"Android 8 Google")
+    system_images=Android8_google
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-27_r03.zip"
+    system_images_path="system-images/android-27/google_apis/arm64-v8a"
+    ;;
+"Android 9")
+    system_images=Android9
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-28_r02.zip"
+    system_images_path="system-images/android-28/default/arm64-v8a"
+    ;;
+"Android 9 Google")
+    system_images=Android9_google
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-28_r02.zip"
+    system_images_path="system-images/android-28/google_apis_playstore/arm64-v8a"
+    ;;
+"Android 10")
+    system_images=Android10
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-29_r08.zip"
+    system_images_path="system-images/android-29/default/arm64-v8a"
+    ;;
+"Android 10 Google")
+    system_images=Android10_google
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-29_r09-darwin.zip"
+    system_images_path="system-images/android-29/google_apis_playstore/arm64-v8a"
+    ;;
+"Android 11")
+    system_images=Android11
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-30_r02.zip"
+    system_images_path="system-images/android-30/default/arm64-v8a"
+    ;;
+"Android 11 Google")
+    system_images=Android11_google
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-30_r10-darwin.zip"
+    system_images_path="system-images/android-30/google_apis_playstore/arm64-v8a"
     ;;
 "Android 12")
     system_images=Android12
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-32_r01.zip"
-    system_images_path="system-images/android-32/default"
+    system_images_path="system-images/android-32/default/arm64-v8a"
     ;;
 "Android 12 Google")
     system_images=Android12_google
-    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-32_r06.zip"
-    system_images_path="system-images/android-32/google_apis"
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-32_r03-darwin.zip"
+    system_images_path="system-images/android-32/google_apis_playstore/arm64-v8a"
+    ;;
+"Android 13")
+    system_images=Android13
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-33_r02.zip"
+    system_images_path="system-images/android-33/default/arm64-v8a"
+    ;;
+"Android 13 Google")
+    system_images=Android13_google
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-33_r07-darwin.zip"
+    system_images_path="system-images/android-33/google_apis_playstore/arm64-v8a"
+    ;;
+"Android 14")
+    system_images=Android14
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-34_r02.zip"
+    system_images_path="system-images/android-34/default/arm64-v8a"
+    ;;
+"Android 14 Google")
+    system_images=Android14_google
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-34_r11-darwin.zip"
+    system_images_path="system-images/android-34/google_apis_playstore/arm64-v8a"
     ;;
 "Quit")
     exit 0
@@ -198,7 +270,7 @@ sed -i '' "s/=Android/=${appName}/g" "dist/${appName}.app/Contents/MacOS/avd/And
 sed -i '' "s|image.sysdir.1=system_images_path|image.sysdir.1=${system_images_path}/arm64-v8a|g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
 sed -i '' "s/Android/${system_images}_${app_id}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.ini"
 sed -i '' "s|-avd Android|-avd ${system_images}_${app_id}|g" "dist/${appName}.app/Contents/MacOS/runemu"
-sed -i '' "s|system_images=system_images|system_images=${system_images}|g" "dist/${appName}.app/Contents/MacOS/runemu"
+sed -i '' "s|system_images=system_images|system_images=${system_images}|g" "dist/${appName}.app/Contents/MacOS/runemu" # TODO Android 12 Google PlayStore 真的叫 Android12_google 吗
 sed -i '' "s|system_images_url=system_images_url|system_images_url=\"${system_images_url}\"|g" "dist/${appName}.app/Contents/MacOS/runemu"
 sed -i '' "s|system_images_path=system_images_path|system_images_path=\"${system_images_path}\"|g" "dist/${appName}.app/Contents/MacOS/runemu"
 mv "dist/${appName}.app/Contents/MacOS/avd/Android.avd" "dist/${appName}.app/Contents/MacOS/avd/${system_images}_${app_id}.avd"
