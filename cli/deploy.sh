@@ -350,7 +350,7 @@ if [ "${GITHUB_WORKSPACE}" != "" ] && [ "${GITHUB_WORKSPACE}" != "" ]; then
   mv "穿越火线 枪战王者.dmg" cfm.dmg
   mv "金铲铲之战.dmg" jcc.dmg
   mv "三国志·战略版.dmg" sgz.dmg
-  mv "咸鱼" xianyu.dmg
-  mv "咸鱼2" xianyu2.dmg
-  mv "咸鱼3" xianyu3.dmg
+  mv "咸鱼.dmg" xianyu.dmg
+  mv "咸鱼2.dmg" xianyu2.dmg
+  mv "咸鱼3.dmg" xianyu3.dmg
 fi
