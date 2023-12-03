@@ -38,7 +38,7 @@ cd "${0%/*}"
 msg_info 正在初始化资源文件
 echo
 find "${PWD}" -name ".DS_Store" -exec rm "{}" \;
-export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk/"
+export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
 export PATH="${PATH}:${ANDROID_SDK_ROOT}/platform-tools"
 export ANDROID_HOME="$(pwd)"
 export ANDROID_AVD_HOME="${ANDROID_HOME}/avd"

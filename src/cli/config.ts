@@ -3,7 +3,6 @@ import {useToast} from "vue-toastification";
 import {t} from './i18n'
 import fs from "fs";
 import path from "path";
-import {string} from "yaml/dist/schema/common/string";
 
 const toast = useToast()
 
