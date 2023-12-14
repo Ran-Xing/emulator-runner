@@ -5,7 +5,7 @@ import {join} from "path";
 
 const google_main_site = "https://dl.google.com/android/repository/";
 let config_path = join(__dirname, "../config.json");
-let main_xml_json:any;
+let main_xml_json: any;
 let main_xml_status = false;
 let system_image_default_xml_url = "";
 let system_image_default_xml_json = {};
@@ -172,7 +172,7 @@ configJsons.proxyCustom ??= "http://127.0.0.1:7890";
 
 console.log('\x1Bc\n\n\n\n\n');
 
-function sendHttpRequest(url:string, function_name:string, callback:any) {
+function sendHttpRequest(url: string, function_name: string, callback: any) {
     console.log(`${function_name} doing`);
     https
         .get(google_main_site + url, (response) => {
@@ -353,8 +353,7 @@ function getSystemImageURL() {
             await new Promise((resolve) => setTimeout(resolve, 500)); // 延时1秒
         }
         console.log("getSystemImage google_apis doing");
-        let sites =
-            system_image_google_apis_xml_json["sys-img:sdk-sys-img"]["remotePackage"];
+        let sites = system_image_google_apis_xml_json["sys-img:sdk-sys-img"]["remotePackage"];
         if (sites.length === undefined || !sites) {
             console.trace(`getSystemImageURL google_apis sites: ${sites}`);
         }

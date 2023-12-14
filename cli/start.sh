@@ -267,7 +267,7 @@ else
 fi
 
 sed -i '' "s/=Android/=${appName}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
-sed -i '' "s|image.sysdir.1=system_images_path|image.sysdir.1=${system_images_path}/arm64-v8a|g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
+sed -i '' "s|image.sysdir.1=system_images_path|image.sysdir.1=${system_images_path}|g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
 sed -i '' "s/Android/${system_images}_${app_id}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.ini"
 sed -i '' "s|-avd Android|-avd ${system_images}_${app_id}|g" "dist/${appName}.app/Contents/MacOS/runemu"
 sed -i '' "s|system_images=system_images|system_images=${system_images}|g" "dist/${appName}.app/Contents/MacOS/runemu" # TODO Android 12 Google PlayStore 真的叫 Android12_google 吗
