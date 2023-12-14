@@ -326,7 +326,7 @@ function getSystemImageURL() {
             let os_args = sites[i]["archives"]["archive"];
             configJsons["system-images"][api_level]["default"][abi]["path"] = (sites[
                 i
-                ]["_attributes"]["path"] ||= "异常路径").replaceAll(";", "/");
+                ]["_attributes"]["path"] ||= "异常路径").replace(/;/g, '/').replace(/\/[^\/]+$/, '');
             if (os_args instanceof Array) {
                 Object.values(os_args).forEach((value) => {
                     configJsons["system-images"][api_level]["default"][abi][
@@ -371,7 +371,7 @@ function getSystemImageURL() {
             }
             let os_args = sites[i]["archives"]["archive"];
             configJsons["system-images"][api_level]["google_apis"][abi]["path"] =
-                (sites[i]["_attributes"]["path"] ||= "异常路径").replaceAll(";", "/");
+                (sites[i]["_attributes"]["path"] ||= "异常路径").replace(/;/g, '/').replace(/\/[^\/]+$/, '');
             if (os_args instanceof Array) {
                 Object.values(os_args).forEach((value) => {
                     configJsons["system-images"][api_level]["google_apis"][abi][
@@ -427,7 +427,7 @@ function getSystemImageURL() {
             let os_args = sites[i]["archives"]["archive"];
             configJsons["system-images"][api_level]["google_apis_playstore"][abi][
                 "path"
-                ] = (sites[i]["_attributes"]["path"] ||= "异常路径").replaceAll(";", "/");
+                ] = (sites[i]["_attributes"]["path"] ||= "异常路径").replace(/;/g, '/').replace(/\/[^\/]+$/, '');
             if (os_args instanceof Array) {
                 Object.values(os_args).forEach((value) => {
                     configJsons["system-images"][api_level]["google_apis_playstore"][abi][
@@ -518,7 +518,7 @@ function writeShell() {
         console.log('    exit 0')
         console.log('    ;;')
         console.log('esac')
-        writeConfigStatus = true;
+        writeShellStatus = true;
         console.log("writeShell done");
     })();
 }
