@@ -207,7 +207,7 @@ case $opt in
     exit 0
     ;;
 esac
-
+target="$(echo "${system_images_path}" | awk -F '/' '{print $2}')"
 if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path}" ]; then
     if [ ! -e "tmp/${system_images}.zip" ]; then
         curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip"
@@ -269,6 +269,7 @@ fi
 sed -i '' "s/=Android/=${appName}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
 sed -i '' "s|image.sysdir.1=system_images_path|image.sysdir.1=${system_images_path}|g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
 sed -i '' "s/Android/${system_images}_${app_id}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.ini"
+sed -i '' "s/android-22/${target}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.ini"
 sed -i '' "s|-avd Android|-avd ${system_images}_${app_id}|g" "dist/${appName}.app/Contents/MacOS/runemu"
 sed -i '' "s|system_images=system_images|system_images=${system_images}|g" "dist/${appName}.app/Contents/MacOS/runemu" # TODO Android 12 Google PlayStore 真的叫 Android12_google 吗
 sed -i '' "s|system_images_url=system_images_url|system_images_url=\"${system_images_url}\"|g" "dist/${appName}.app/Contents/MacOS/runemu"
