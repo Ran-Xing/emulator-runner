@@ -102,102 +102,102 @@ case $opt in
 "Android 5")
     system_images=Android5
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-22_r02.zip"
-    system_images_path="system-images/android-22/default"
+    system_images_path="system-images/android-22/default/arm64-v8a"
     ;;
 "Android 5 Google")
     system_images=Android5_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-22_r26.zip"
-    system_images_path="system-images/android-22/google_apis"
+    system_images_path="system-images/android-22/google_apis/arm64-v8a"
     ;;
 "Android 6")
     system_images=Android6
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-23_r07.zip"
-    system_images_path="system-images/android-23/default"
+    system_images_path="system-images/android-23/default/arm64-v8a"
     ;;
 "Android 6 Google")
     system_images=Android6_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-23_r33.zip"
-    system_images_path="system-images/android-23/google_apis"
+    system_images_path="system-images/android-23/google_apis/arm64-v8a"
     ;;
 "Android 7")
     system_images=Android7
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-25_r02.zip"
-    system_images_path="system-images/android-25/default"
+    system_images_path="system-images/android-25/default/arm64-v8a"
     ;;
 "Android 7 Google")
     system_images=Android7_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-25_r20.zip"
-    system_images_path="system-images/android-25/google_apis"
+    system_images_path="system-images/android-25/google_apis/arm64-v8a"
     ;;
 "Android 8")
     system_images=Android8
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-27_r02.zip"
-    system_images_path="system-images/android-27/default"
+    system_images_path="system-images/android-27/default/arm64-v8a"
     ;;
 "Android 8 Google")
     system_images=Android8_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis/arm64-v8a-27_r03.zip"
-    system_images_path="system-images/android-27/google_apis"
+    system_images_path="system-images/android-27/google_apis/arm64-v8a"
     ;;
 "Android 9")
     system_images=Android9
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-28_r02.zip"
-    system_images_path="system-images/android-28/default"
+    system_images_path="system-images/android-28/default/arm64-v8a"
     ;;
 "Android 9 Google")
     system_images=Android9_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-28_r02.zip"
-    system_images_path="system-images/android-28/google_apis_playstore"
+    system_images_path="system-images/android-28/google_apis_playstore/arm64-v8a"
     ;;
 "Android 10")
     system_images=Android10
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-29_r08.zip"
-    system_images_path="system-images/android-29/default"
+    system_images_path="system-images/android-29/default/arm64-v8a"
     ;;
 "Android 10 Google")
     system_images=Android10_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-29_r09-darwin.zip"
-    system_images_path="system-images/android-29/google_apis_playstore"
+    system_images_path="system-images/android-29/google_apis_playstore/arm64-v8a"
     ;;
 "Android 11")
     system_images=Android11
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-30_r02.zip"
-    system_images_path="system-images/android-30/default"
+    system_images_path="system-images/android-30/default/arm64-v8a"
     ;;
 "Android 11 Google")
     system_images=Android11_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-30_r10-darwin.zip"
-    system_images_path="system-images/android-30/google_apis_playstore"
+    system_images_path="system-images/android-30/google_apis_playstore/arm64-v8a"
     ;;
 "Android 12")
     system_images=Android12
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-32_r01.zip"
-    system_images_path="system-images/android-32/default"
+    system_images_path="system-images/android-32/default/arm64-v8a"
     ;;
 "Android 12 Google")
     system_images=Android12_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-32_r03-darwin.zip"
-    system_images_path="system-images/android-32/google_apis_playstore"
+    system_images_path="system-images/android-32/google_apis_playstore/arm64-v8a"
     ;;
 "Android 13")
     system_images=Android13
     system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-33_r02.zip"
-    system_images_path="system-images/android-33/default"
+    system_images_path="system-images/android-33/default/arm64-v8a"
     ;;
 "Android 13 Google")
     system_images=Android13_google
     system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-33_r07-darwin.zip"
-    system_images_path="system-images/android-33/google_apis_playstore"
+    system_images_path="system-images/android-33/google_apis_playstore/arm64-v8a"
     ;;
 "Android 14")
     system_images=Android14
-    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-34_r03.zip"
-    system_images_path="system-images/android-34/default"
+    system_images_url="https://dl.google.com/android/repository/sys-img/android/arm64-v8a-34_r04.zip"
+    system_images_path="system-images/android-34/default/arm64-v8a"
     ;;
 "Android 14 Google")
     system_images=Android14_google
-    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-34_r11-darwin.zip"
-    system_images_path="system-images/android-34/google_apis_playstore"
+    system_images_url="https://dl.google.com/android/repository/sys-img/google_apis_playstore/arm64-v8a-34_r12-darwin.zip"
+    system_images_path="system-images/android-34/google_apis_playstore/arm64-v8a"
     ;;
 "Quit")
     exit 0
@@ -207,13 +207,14 @@ case $opt in
     exit 0
     ;;
 esac
+
 target="$(echo "${system_images_path}" | awk -F '/' '{print $2}')"
-if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path}" ]; then
+if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}" ]; then
     if [ ! -e "tmp/${system_images}.zip" ]; then
         curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip"
     fi
-    mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path}"
-    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path}"
+    mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
+    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
 fi
 
 msg_ok 初始化完成!
