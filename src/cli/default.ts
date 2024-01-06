@@ -11,8 +11,8 @@ export const proxySelectedOption = [
 ]
 export const githubSelectedOption = [
     {key: 'none', text: t("none"), value: ""},
-    {key: 'ghproxy', text: "ghproxy", value: "https://ghproxy.com"},
-    {key: 'custom', text: t("custom"), value: "https://ghproxy.com"},
+    {key: 'ghproxy', text: "ghproxy", value: "https://mirror.ghproxy.com"},
+    {key: 'custom', text: t("custom"), value: "https://mirror.ghproxy.com"},
     // TODO t("custom") is not working
 ]
 export const languageOptions = [

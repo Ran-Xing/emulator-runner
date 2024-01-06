@@ -19,7 +19,7 @@ console.log('proxyCustom', proxyCustom.value)
 function reGetConfig() {
   languageSelected.value = config.value.languageSelected ?? "auto"
   proxyCustom.value = config.value.proxyCustom ?? "http://127.0.0.1:10809"
-  githubCustom.value = config.value.githubCustom ?? "https://ghproxy.com"
+  githubCustom.value = config.value.githubCustom ?? "https://mirror.ghproxy.com"
   proxyCustomIsOpen.value = false
   githubCustomIsOpen.value = false
   proxySelected.value = config.value.proxySelected ?? "none"
@@ -79,7 +79,7 @@ function githubSelectedUpdate(key: string, open: boolean, custom: boolean) {
     githubCustom.value = githubCustom.value.trim()
     console.log(`githubSelectedUpdate custom key [${key}] value [${proxyCustom.value}]`)
     if (githubCustom.value === "") {
-      githubCustom.value = "https://ghproxy.com"
+      githubCustom.value = "https://mirror.ghproxy.com"
     }
     setTimeout(() => {
       githubCustomIsOpen.value = open

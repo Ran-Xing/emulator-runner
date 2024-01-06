@@ -167,7 +167,7 @@ configJsons["system-images"] ??= {
 configJsons.languageSelected ??= "auto";
 configJsons.proxySelected ??= "none";
 configJsons.githubSelected ??= "none";
-configJsons.githubCustom ??= "https://ghproxy.com";
+configJsons.githubCustom ??= "https://mirror.ghproxy.com";
 configJsons.proxyCustom ??= "http://127.0.0.1:7890";
 
 console.log('\x1Bc\n\n\n\n\n');
