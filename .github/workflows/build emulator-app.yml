@@ -1,12 +1,10 @@
 name: Build For Android Emulator
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      RELEASE_NAME:
-        description: 'RELEASE NAME'
-        required: true
-        default: "v1."
 
 jobs:
   Build_For_Android_Emulator:
@@ -21,6 +19,21 @@ jobs:
         run: |
           brew install create-dmg
           bash cli/deploy.sh
+      -
+        name: Get latest version
+        id: current-version
+        uses: cardinalby/git-get-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+        with:
+          latest: true
+          prerelease: false
+      -
+        name: Generate next version
+        uses: HardNorth/github-version-generate@v1.3.0
+        with:
+          version: ${{ steps.current-version.outputs.tag_name }}
+          next-version-increment-patch: true
       -
         name: Delete old Releases
         uses: dev-drprasad/delete-older-releases@v0.3.2
@@ -38,8 +51,8 @@ jobs:
         with:
           files: "cli/dist/*.dmg"
           body_path: cli/README.md
-          name: "Pre-release ${{ github.event.inputs.RELEASE_NAME }}"
-          tag_name: "${{ github.event.inputs.RELEASE_NAME }}"
+          name: "Pre-release v${{ env.NEXT_VERSION }}"
+          tag_name: "${{ env.NEXT_VERSION }}"
           draft: false
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}

@@ -69,12 +69,12 @@ fi
 system_images=system_images
 system_images_url=system_images_url
 system_images_path=system_images_path
-if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path}" ]; then
+if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}" ]; then
     if [ ! -e "tmp/${system_images}.zip" ]; then
         curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip"
     fi
-    mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path}"
-    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path}"
+    mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
+    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
 fi
 if [ -d "tmp" ]; then rm -rf tmp; fi
 msg_ok 初始化完成!
