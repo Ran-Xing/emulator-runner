@@ -58,23 +58,23 @@ repo=https://dl.google.com/android/repository/
 msg_info 正在初始化资源文件
 echo
 find "${PWD}" -name ".DS_Store" -exec rm -v "{}" \;
-ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
-if [ ! -d "${ANDROID_SDK_ROOT}" ]; then mkdir -p "${ANDROID_SDK_ROOT}"; fi
+#ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
+#if [ ! -d "${ANDROID_SDK_ROOT}" ]; then mkdir -p "${ANDROID_SDK_ROOT}"; fi
 if [ ! -d "tmp" ]; then mkdir tmp; fi
 if [ ! -d "dist" ]; then mkdir dist; fi
-if [ ! -d "${ANDROID_SDK_ROOT}/emulator" ]; then
-      emulator_url=https://dl.google.com/android/repository/emulator-darwin_aarch64-10696886.zip
-    if [ "$(arch)" != "arm64" ]; then
-      emulator_url=https://dl.google.com/android/repository/emulator-darwin_x64-10696886.zip
-    fi
-    if [ ! -e "tmp/emulator.zip" ]; then curl -kfsSL "${emulator_url}" -o tmp/emulator.zip; fi
-    unzip -q "tmp/emulator.zip" -d "${ANDROID_SDK_ROOT}"
-
-fi
-if [ ! -d "${ANDROID_SDK_ROOT}/platform-tools" ]; then
-    if [ ! -e "tmp/platform-tools.zip" ]; then curl -kfsSL https://dl.google.com/android/repository/platform-tools_r34.0.4-darwin.zip -o tmp/platform-tools.zip; fi
-    unzip -q "tmp/platform-tools.zip" -d "${ANDROID_SDK_ROOT}"
-fi
+#if [ ! -d "${ANDROID_SDK_ROOT}/emulator" ]; then
+#      emulator_url=https://dl.google.com/android/repository/emulator-darwin_aarch64-10696886.zip
+#    if [ "$(arch)" != "arm64" ]; then
+#      emulator_url=https://dl.google.com/android/repository/emulator-darwin_x64-10696886.zip
+#    fi
+#    if [ ! -e "tmp/emulator.zip" ]; then curl -kfsSL "${emulator_url}" -o tmp/emulator.zip; fi
+#    unzip -q "tmp/emulator.zip" -d "${ANDROID_SDK_ROOT}"
+#
+#fi
+#if [ ! -d "${ANDROID_SDK_ROOT}/platform-tools" ]; then
+#    if [ ! -e "tmp/platform-tools.zip" ]; then curl -kfsSL https://dl.google.com/android/repository/platform-tools_r34.0.4-darwin.zip -o tmp/platform-tools.zip; fi
+#    unzip -q "tmp/platform-tools.zip" -d "${ANDROID_SDK_ROOT}"
+#fi
 #if [ ! -d "${ANDROID_SDK_ROOT}/skins" ]; then
 #    cp -r src/Android.app/Contents/MacOS/skins "${ANDROID_SDK_ROOT}/" # TODO
 #else
@@ -82,9 +82,9 @@ fi
 #        cp -r src/Android.app/Contents/MacOS/skins/pixel_4_xl "${ANDROID_SDK_ROOT}/skins/" # TODO
 #    fi
 #fi
-if [ ! -d "${ANDROID_SDK_ROOT}/platforms" ]; then
-    mkdir "${ANDROID_SDK_ROOT}/platforms"
-fi
+#if [ ! -d "${ANDROID_SDK_ROOT}/platforms" ]; then
+#    mkdir "${ANDROID_SDK_ROOT}/platforms"
+#fi
 
 if [ -z "$1" ]; then
     echo "    请选择创建的系统版本"
@@ -209,13 +209,14 @@ case $opt in
 esac
 
 target="$(echo "${system_images_path}" | awk -F '/' '{print $2}')"
-if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}" ]; then
-    if [ ! -e "tmp/${system_images}.zip" ]; then
-        curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip"
-    fi
-    mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
-    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
-fi
+
+#if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}" ]; then
+#    if [ ! -e "tmp/${system_images}.zip" ]; then
+#        curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip"
+#    fi
+#    mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
+#    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
+#fi
 
 msg_ok 初始化完成!
 

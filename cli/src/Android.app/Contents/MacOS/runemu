@@ -65,6 +65,9 @@ fi
 if [ ! -d "${ANDROID_SDK_ROOT}/platforms" ]; then
     mkdir "${ANDROID_SDK_ROOT}/platforms"
 fi
+if [ ! -d "${ANDROID_SDK_ROOT}/platforms" ]; then
+    mkdir "${ANDROID_SDK_ROOT}/platforms"
+fi
 
 system_images=system_images
 system_images_url=system_images_url
