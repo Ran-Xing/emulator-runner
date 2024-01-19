@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleExecutable</key>
-    <string>runemu</string>
-    <key>CFBundleIconFile</key>
-    <string>ApplicationStub.icns</string>
-    <key>CFBundleGetInfoString</key>
-    <string>Author: XRSec | Website: github.com/Ran-Xing/emulator-runner</string>
+	<key>CFBundleDisplayName</key>
+	<string>Android</string>
+	<key>CFBundleExecutable</key>
+	<string>runemu</string>
+	<key>CFBundleIconFile</key>
+	<string>ApplicationStub.icns</string>
+    <key>CFBundleShortVersionString</key>
+	<string>https://github.com/Ran-Xing/emulator-runner</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2023-2024 XRSec. All rights reserved.</string>
 </dict>
 </plist>

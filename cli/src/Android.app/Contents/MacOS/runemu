@@ -33,6 +33,16 @@ msg_err() {
     exit 1
 }
 
+_exit_handler() {
+  title=$(echo $0 | awk -F '/' '{print $3}')
+  message="运行失败: $(cat tmp/error.log)"
+  rm -rf tmp
+  osascript -e "display notification \"$message\" with title \"$title\" sound name \"Glass\""
+  exit 1
+}
+
+trap _exit_handler EXIT
+
 cd "${0%/*}"
 
 msg_info 正在初始化资源文件
@@ -46,13 +56,12 @@ ANDROID_EMULATOR_LAUNCHER_DIR="${ANDROID_SDK_ROOT}/emulator"
 if [ ! -d "${ANDROID_SDK_ROOT}" ]; then mkdir -p "${ANDROID_SDK_ROOT}"; fi
 if [ ! -d "tmp" ]; then mkdir tmp; fi
 if [ ! -d "${ANDROID_SDK_ROOT}/emulator" ]; then
-    if [ ! -e "tmp/emulator.zip" ]; then curl -kfsSL https://dl.google.com/android/repository/emulator-darwin_aarch64-10696886.zip -o tmp/emulator.zip; fi
-    unzip -q "tmp/emulator.zip" -d "${ANDROID_SDK_ROOT}"
-
+    if [ ! -e "tmp/emulator.zip" ]; then curl -kfsSL https://dl.google.com/android/repository/emulator-darwin_aarch64-10696886.zip -o tmp/emulator.zip 2> tmp/error.log || { rm -f tmp/emulator.zip ; exit 1 ; } ; fi
+    unzip -q "tmp/emulator.zip" -d "${ANDROID_SDK_ROOT}" 2> tmp/error.log || { rm -rf "${ANDROID_SDK_ROOT}/emulator" ; exit 1 ; }
 fi
 if [ ! -d "${ANDROID_SDK_ROOT}/platform-tools" ]; then
-    if [ ! -e "tmp/platform-tools.zip" ]; then curl -kfsSL https://dl.google.com/android/repository/platform-tools_r34.0.4-darwin.zip -o tmp/platform-tools.zip; fi
-    unzip -q "tmp/platform-tools.zip" -d "${ANDROID_SDK_ROOT}"
+    if [ ! -e "tmp/platform-tools.zip" ]; then curl -kfsSL https://dl.google.com/android/repository/platform-tools_r34.0.4-darwin.zip -o tmp/platform-tools.zip 2> tmp/error.log || { rm -f tmp/platform-tools.zip ; exit 1 ; } ; fi
+    unzip -q "tmp/platform-tools.zip" -d "${ANDROID_SDK_ROOT}" 2> tmp/error.log || { rm -rf "${ANDROID_SDK_ROOT}/platform-tools" ; exit 1 ; }
 fi
 
 #if [ ! -d "${ANDROID_SDK_ROOT}/skins" ]; then
@@ -73,11 +82,9 @@ system_images=system_images
 system_images_url=system_images_url
 system_images_path=system_images_path
 if [ ! -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}" ]; then
-    if [ ! -e "tmp/${system_images}.zip" ]; then
-        curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip"
-    fi
+    if [ ! -e "tmp/${system_images}.zip" ]; then curl -kfsSL "${system_images_url}" -o "tmp/${system_images}.zip" 2> tmp/error.log || { rm -f "tmp/${system_images}.zip" ; exit 1 ; } ; fi
     mkdir -p "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
-    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}"
+    unzip -q "tmp/${system_images}.zip" -d "${ANDROID_SDK_ROOT}/${system_images_path%/*}" 2> tmp/error.log || { rm -rf "${ANDROID_SDK_ROOT}/${system_images_path%/*}" ; exit 1 ; }
 fi
 if [ -d "tmp" ]; then rm -rf tmp; fi
 msg_ok 初始化完成!

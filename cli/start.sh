@@ -269,6 +269,7 @@ else
 fi
 
 sed -i '' "s/=Android/=${appName}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
+sed -i '' "s/Android/${appName}/g" "dist/${appName}.app/Contents/Info.plist"
 sed -i '' "s|image.sysdir.1=system_images_path|image.sysdir.1=${system_images_path}|g" "dist/${appName}.app/Contents/MacOS/avd/Android.avd/config.ini"
 sed -i '' "s/Android/${system_images}_${app_id}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.ini"
 sed -i '' "s/android-22/${target}/g" "dist/${appName}.app/Contents/MacOS/avd/Android.ini"
