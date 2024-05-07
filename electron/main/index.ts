@@ -66,7 +66,7 @@ if (!app.requestSingleInstanceLock()) {
 let staticPath = join(process.env.DIST, '/assets')
 if (process.env.DIST.includes('/Contents/Resources/')) {
     process.env.configFilePath = join(process.env.DIST, '../../config.json')
-    staticPath = join(process.env.DIST, '../../Resources/')
+    staticPath = join(process.env.DIST, '../../')
 }
 switch (process.platform) {
     case 'darwin':
@@ -133,7 +133,7 @@ async function createWindow() {
         // frame: true,
         titleBarStyle: 'hiddenInset',
         icon: join(process.env.VITE_PUBLIC, 'icon.png'),
-        alwaysOnTop: true,
+        // alwaysOnTop: true,
         webPreferences: {
             preload,
             // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
@@ -320,7 +320,8 @@ ipcMain.on('getICons', (event, args) => {
         console.log("getICons error", args)
         return;
     }
-    if (!existsSync(args[0])) {
+    console.log(staticPath)
+    if (!existsSync(args[1])) {
         try {
             copyFileSync(args[0], join(staticPath, args[1] + '.png'))
             event.returnValue = join(staticPath, args[1] + '.png')

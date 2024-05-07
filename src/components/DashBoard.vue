@@ -59,7 +59,6 @@ function emulatorListApp() {
       } catch (err) {
         avdIcon = "/icon.png";
       }
-
       if (emulatorLists.value[avdID] === undefined) {
         emulatorLists.value[avdID] = {
           avd: avdID,
