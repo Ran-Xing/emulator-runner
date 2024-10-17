@@ -33,7 +33,7 @@
     "@types/node": "^20.10.4",
     "@types/vue-router": "^2.0.0",
     "@vitejs/plugin-vue": "^5.0.2",
-    "electron": "^30.0.2",
+    "electron": "^32.0.1",
     "electron-builder": "^24.9.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
